@@ -1,5 +1,4 @@
-import React ,{useState , useEffect} from "react";
-// import axios from 'axios'
+import React ,{useState , useEffect,useRef} from "react";
 import "../styles/App.css";
 
 var colors = [
@@ -22,19 +21,22 @@ const App = () => {
   const [quotes , setQuotes] = useState([])
   const [author , setAuthor] = useState([])
   let color = parseInt(Math.random()*12);
-
+  
      async function generateQuotes(){
       let res = await fetch('https://api.quotable.io/random');
       let data = await res.json();
       setQuotes(data.content)
       setAuthor(data.author)
+      document.body.style.backgroundColor = colors[color]
       }
      
      useEffect(()=>{
-      document.body.style.backgroundColor = colors[color]
-     },[quotes])
+      console.log("render");
+      generateQuotes();
+     },[])
+     
     return (
-      <div id="main">
+     <div id="main">
         <div id="wrapper">
         <div id="quote-box">
         <div className="quote-text">
