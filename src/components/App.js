@@ -31,7 +31,6 @@ const App = () => {
       }
      
      useEffect(()=>{
-      console.log("render");
       generateQuotes();
      },[])
      
